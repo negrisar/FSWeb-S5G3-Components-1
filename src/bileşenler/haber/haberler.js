@@ -87,7 +87,19 @@ const data = [
     ucuncuParagraf: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    baslik: 'Polkadot',
+    tarih: '24 Mayıs 2023',
+    ilkParagraf: `Polkadot enables cross-blockchain transfers of any type of data or asset, not just tokens. 
+    Connecting to Polkadot gives you the ability to interoperate with a wide variety of blockchains in the Polkadot network. `,
+
+    ikinciParagraf: `Polkadot provides unprecedented economic scalability by enabling a common set of validators to secure multiple blockchains. 
+    Polkadot provides transactional scalability by spreading transactions across multiple parallel blockchains.`,
+
+    ucuncuParagraf: `Polkadot's novel data availability and validity scheme allows chains to interact with each other in a meaningful way. 
+    Chains remain independent in their governance, but united in their security.`
+  },
 ];
 
 /*
@@ -115,3 +127,45 @@ const data = [
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
+
+const haberYapici = (haber) => {
+  const containerDiv =document.createElement("div");
+  containerDiv.classList.add("article");
+
+  const baslik = document.createElement("h2");
+  baslik.textContent = haber.baslik;
+  containerDiv.append(baslik);
+
+  const paragraf = document.createElement("p");
+  containerDiv.classList.add("tarih");
+  paragraf.textContent = haber.tarih;
+  containerDiv.append(paragraf);
+
+  const paragraf1 = document.createElement("P");
+  paragraf1.textContent = haber.ilkParagraf;
+  containerDiv.append(paragraf1)
+
+  const paragraf2 = document.createElement("P");
+  paragraf2.textContent = haber.ikinciParagraf;
+  containerDiv.append(paragraf2)
+
+  const paragraf3 = document.createElement("P");
+  paragraf3.textContent = haber.ucuncuParagraf;
+  containerDiv.append(paragraf3)
+
+  const span = document.createElement("span");
+  span.classList.add("expandButton");
+  span.textContent = "+";
+  span.addEventListener("click" , (e) => {
+    e.target.parentElement.classList.toggle("article-open");
+
+  });
+
+  containerDiv.append(span);
+  return containerDiv
+
+}
+
+data.forEach((haber) =>{
+  document.querySelector(".articles").append(haberYapici(haber));
+})
